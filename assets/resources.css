@@ -1,0 +1,77 @@
+/* ===== Resources section — extends the landing styles.css ===== */
+
+/* Tools: search + filters */
+.rtools{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin:34px 0 30px}
+.searchbox{
+  flex:1;min-width:240px;font-family:'Manrope',sans-serif;font-size:1rem;color:var(--text);
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;
+  padding:13px 22px;outline:none;transition:border-color .2s ease;
+}
+.searchbox::placeholder{color:var(--muted-2)}
+.searchbox:focus{border-color:var(--leaf)}
+.filters{display:flex;flex-wrap:wrap;gap:9px}
+.fbtn{
+  font-family:'Manrope',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;
+  color:var(--muted);background:transparent;border:1px solid var(--line-strong);
+  border-radius:999px;padding:9px 16px;transition:all .18s ease;
+}
+.fbtn:hover{color:var(--text);border-color:var(--muted)}
+.fbtn.active{background:var(--leaf);color:#08110b;border-color:var(--leaf)}
+
+/* Grid of resource cards */
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:900px){.rgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.rgrid{grid-template-columns:1fr}}
+.rcard{
+  display:flex;flex-direction:column;gap:12px;
+  background:linear-gradient(180deg,var(--surface),var(--bg-2));
+  border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+}
+.rcard:hover{transform:translateY(-5px);border-color:var(--line-strong);box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.rcard h3{font-family:'Unbounded',sans-serif;font-size:1.08rem;font-weight:600;line-height:1.25}
+.rcard p{color:var(--muted);font-size:.95rem;flex:1}
+.rcard-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px}
+.rtags{display:flex;flex-wrap:wrap;gap:6px}
+.rtag{font-size:.72rem;font-weight:600;color:var(--muted-2);background:rgba(255,255,255,.05);
+  border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.rmeta-inline{font-size:.8rem;color:var(--muted-2);font-weight:600;white-space:nowrap}
+.rempty{color:var(--muted);text-align:center;padding:50px 0;font-size:1.05rem}
+
+/* Type badges */
+.type-badge{
+  align-self:flex-start;font-family:'Unbounded',sans-serif;font-weight:600;font-size:.7rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:999px;
+}
+.type-badge.law{background:rgba(58,160,255,.15);color:var(--blue)}
+.type-badge.research{background:rgba(79,191,107,.15);color:var(--leaf)}
+.type-badge.application{background:rgba(201,138,75,.16);color:var(--earth)}
+.type-badge.faq{background:rgba(255,207,63,.15);color:var(--gold)}
+
+/* Single resource article */
+.wrap.narrow{max-width:800px}
+.rarticle{padding-top:56px}
+.back-link{display:inline-block;color:var(--muted);font-weight:600;font-size:.92rem;margin-bottom:22px}
+.back-link:hover{color:var(--leaf)}
+.rtitle{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:700;margin:14px 0 12px}
+.rmeta{display:flex;flex-wrap:wrap;gap:8px;color:var(--muted-2);font-size:.9rem;font-weight:600;margin-bottom:8px}
+.rmeta span:not(:last-child)::after{content:"·";margin-left:8px;color:var(--line-strong)}
+
+/* Prose (rendered markdown) */
+.prose{color:var(--muted);font-size:1.05rem;line-height:1.75;margin-top:24px}
+.prose h2{font-family:'Unbounded',sans-serif;font-size:1.35rem;font-weight:600;color:var(--text);margin:34px 0 12px}
+.prose h3{font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text);margin:26px 0 10px}
+.prose p{margin:14px 0}
+.prose ul,.prose ol{margin:14px 0;padding-left:22px}
+.prose li{margin:7px 0}
+.prose a{color:var(--leaf);text-decoration:underline;text-underline-offset:3px}
+.prose a:hover{color:var(--leaf-strong,var(--green))}
+.prose strong{color:var(--text)}
+.prose blockquote{
+  margin:22px 0;padding:16px 22px;border-left:3px solid var(--leaf);
+  background:rgba(79,191,107,.07);border-radius:0 12px 12px 0;color:var(--muted);font-size:.98rem;
+}
+.prose table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95rem}
+.prose th,.prose td{border:1px solid var(--line);padding:10px 12px;text-align:left}
+.prose th{background:var(--surface);color:var(--text)}
+.source-btn{margin-top:30px}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+{{HEAD}}
+</head>
+<body>
+{{NAV}}
+<section class="section" style="padding-top:56px;padding-bottom:90px">
+  <div class="wrap">
+    <span class="eyebrow">База знань</span>
+    <h2 style="font-size:clamp(1.9rem,4vw,3rem);font-weight:700;margin:16px 0 12px">Ресурси по CBD</h2>
+    <p class="lead">Законодавство, дослідження, практичне застосування та відповіді на часті питання про CBD і технічні коноплі в реабілітації ветеранів.</p>
+
+    <div class="rtools">
+      <input id="rsearch" class="searchbox" type="search" placeholder="Пошук за назвою, темою, тегом…" aria-label="Пошук" />
+      <div class="filters" role="tablist">
+        <button class="fbtn active" data-type="all">Усі</button>
+        <button class="fbtn" data-type="law">Законодавство</button>
+        <button class="fbtn" data-type="research">Дослідження</button>
+        <button class="fbtn" data-type="application">Застосування</button>
+        <button class="fbtn" data-type="faq">FAQ</button>
+      </div>
+    </div>
+
+    <div class="rgrid" id="rgrid">
+{{CARDS}}
+    </div>
+    <p class="rempty" id="rempty" hidden>За вашим запитом нічого не знайдено.</p>
+  </div>
+</section>
+{{FOOTER}}
+<script>
+  (function(){
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.rcard'));
+    var search = document.getElementById('rsearch');
+    var empty = document.getElementById('rempty');
+    var activeType = 'all';
+    function apply(){
+      var q = (search.value || '').trim().toLowerCase();
+      var shown = 0;
+      cards.forEach(function(c){
+        var okType = activeType === 'all' || c.dataset.type === activeType;
+        var okSearch = !q || (c.dataset.search || '').indexOf(q) !== -1;
+        var show = okType && okSearch;
+        c.style.display = show ? '' : 'none';
+        if(show) shown++;
+      });
+      empty.hidden = shown !== 0;
+    }
+    document.querySelectorAll('.fbtn').forEach(function(b){
+      b.addEventListener('click', function(){
+        document.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('active')});
+        b.classList.add('active');
+        activeType = b.dataset.type;
+        apply();
+      });
+    });
+    search.addEventListener('input', apply);
+  })();
+</script>
+{{WIDGET}}
+</body>
+</html>

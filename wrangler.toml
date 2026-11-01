@@ -1,0 +1,22 @@
+# Cloudflare Pages config for VERC.
+# Static build output is dist/; Pages Functions live in functions/.
+name = "verc"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-11-01"
+
+# Workers AI — embeddings (@cf/baai/bge-m3) for RAG
+[ai]
+binding = "AI"
+
+# Vectorize index for the CBD knowledge base (create with:
+#   npx wrangler vectorize create verc-cbd --dimensions=1024 --metric=cosine)
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "verc-cbd"
+
+[vars]
+CLAUDE_MODEL = "claude-haiku-4-5"
+
+# Secrets (do NOT put here — set via dashboard or wrangler):
+#   ANTHROPIC_API_KEY   — Claude API key
+#   INGEST_SECRET       — shared secret to authorize POST /api/ingest
